@@ -1,10 +1,10 @@
 ##WTF?##
-**This is a simple Python web app plus zsh shell script to test whether the internet connection is down.**
+**Simple Python web app plus zsh shell script to test whether the internet connection is down.**
 
 ##Why?##
-I was tired of hearing people ask, *"is the internet down?"*
+I was tired of hearing people ask no one in particular, *"is the internet down?"*
 
-Now they can look at this webpage and say, *"Fuckface, the internet is down.  Go fix it so I can get some work done!"* (or keep their mouths shut if the internet is not really down).
+Now they can look at this webpage and say to a specific person, *"Fuckface, the internet is down.  Go fix it so I can get some work done!"* (or keep their mouths shut if the internet is not really down).
 
 ##What?##
 It does some pinging of the google at 8.8.8.8, averages the return-trip time over three pings, and summarizes the result in a pretty web page.
