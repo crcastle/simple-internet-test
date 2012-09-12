@@ -203,12 +203,12 @@ class index:
               var slow = /slow/;
               var down = /down/;
 
-              if (up.test(text)) {
-                return 'green';
+              if (down.test(text)) {
+                return 'red';
               } else if (slow.test(text)) {
                 return 'yellow';
-              } else if (down.test(text)) {
-                return 'red';
+              } else if (up.test(text)) {
+                return 'green';
               } else {
                 return 'black';
               }
