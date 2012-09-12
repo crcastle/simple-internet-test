@@ -206,7 +206,7 @@ class index:
               if (down.test(text)) {
                 return 'red';
               } else if (slow.test(text)) {
-                return 'yellow';
+                return 'gold';
               } else if (up.test(text)) {
                 return 'green';
               } else {
