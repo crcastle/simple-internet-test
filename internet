@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+
+evaluate_ping_speed()
+{
+  ping_ms=$(avg_ping $1)
+  if (( ping_ms == 0 )); then
+    internal_ping_ms=$(avg_ping 192.168.8.1)
+    if (( internal_ping_ms == 0)); then
+      echo "The wireless is down (router not responding to ping)"
+    elif (( internal_ping_ms < 20 )); then
+      echo "The wireless is working, but the external connection is down (<20ms ping to router, no ping to google)"
+    elif (( internal_ping_ms < 1000 )); then
+      echo "The wireless is slow, and the external connection is down (>20ms but <1000ms ping to router)"
+    elif (( internal_ping_ms >= 1000 )); then
+      echo "The wireless is down, and the external connection is down (>1000ms ping to router)"
+    else
+      echo "No idea what's going on with the wireless, but the external connection is down"
+    fi
+  elif (( ping_ms < 50 )); then
+    echo "The internet is up (<50ms ping to google)"
+  elif (( ping_ms < 200 )); then
+    echo "The internet is up, but slower than normal (>50ms but <200ms ping to google)"
+  elif (( ping_ms >= 200 )); then
+    echo "The internet is really slow (>200ms ping to google)"
+  else
+    echo "No idea what's going on with the internet (tell chris i'm broken)"
+  fi
+}
+
+avg_ping() {
+  echo $(ping -n -c 4 -W 1000 $1 | tail -1| awk '{print $4}' | cut -d '/' -f 2)
+}
+
+evaluate_ping_speed 8.8.8.8
